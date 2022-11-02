@@ -1,11 +1,7 @@
 package magazin;
 import cutii.*;
 import jucarii.*;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Magazin {
     private ArrayList<Pachet> listaVanzari;
@@ -23,11 +19,23 @@ public class Magazin {
         return listaVanzari;
     }
 
+    public Magazin(ArrayList<Pachet> listaVanzari) {
+        this.listaVanzari = listaVanzari;
+    }
+
     public Magazin() {
         listaVanzari = new ArrayList<>(15);
     }
 
+    public void afisPacheteDupaPreț( boolean descrescator){
+            if(descrescator == false)
+                listaVanzari.sort(((o1, o2) -> o1.compareTo(o2)));
+            else listaVanzari.sort(((o1, o2) -> o2.compareTo(o1)));
+            for(Pachet pachete : listaVanzari){
+                System.out.println(pachete+"\npret="+pachete.pretPachet());
+            }
 
+    }
     public static void main(String[] args){
 
     System.out.println("\n===== Demo Cutii (2p) =====");
@@ -72,7 +80,7 @@ public class Magazin {
 
         System.out.println("\n===== Demo Magazin (2p) =====");
         Magazin m = new Magazin();
-        List<Pachet> vanzari = m.getListaVanzari();
+        ArrayList<Pachet> vanzari = m.getListaVanzari();
         vanzari.add( new Pachet(new Minge(10,0,0), true, true) );
         vanzari.add( new Pachet(new Minge(10,0,0), true, false) );
         vanzari.add( new Pachet(new Minge(10,0,0), true, true) );
@@ -83,5 +91,9 @@ public class Magazin {
         m.afisVanzari();
         System.out.println("In rola au mai ramas "+
                 RolaPanglica.getRola().getDisponibil()+" cm");
+        Magazin magazin = new Magazin(vanzari);
+
+        System.out.println("\n===== Demo Sortare pachete  =====");
+        magazin.afisPacheteDupaPreț(true);
 }
 }

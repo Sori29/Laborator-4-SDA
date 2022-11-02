@@ -1,7 +1,7 @@
 package magazin;
 import jucarii.*;
 import cutii.*;
-public class Pachet {
+public class Pachet implements Comparable<Pachet>{
     private Jucarie jucarie;
     private iCutie cutie;
     private double lungPanglica;
@@ -42,4 +42,12 @@ public class Pachet {
         return null;
     }
 
+    @Override
+    public int compareTo(Pachet o) {
+        if(this.pretPachet() == o.pretPachet())
+            return 0;
+        else if(pretPachet()>o.pretPachet())
+            return 1;
+        else return -1;
+    }
 }
